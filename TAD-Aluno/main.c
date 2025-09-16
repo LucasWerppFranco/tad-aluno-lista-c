@@ -2,7 +2,7 @@
 #include "aluno.h"
 
 int main() {
-    carregarAlunos(); // Carregar dados existentes
+    carregarAlunos(); 
     int opcao;
 
     do {
@@ -20,7 +20,7 @@ int main() {
             int rm;
             float nota;
             printf("Digite o nome do aluno: ");
-            getchar(); // limpar \n
+            getchar(); 
             fgets(nome, sizeof(nome), stdin);
             nome[strcspn(nome, "\n")] = 0;
             printf("Digite o RM (6 digitos): ");
