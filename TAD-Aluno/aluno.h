@@ -22,6 +22,7 @@ typedef struct {
 
 void alterarNota(Aluno *a, float novaNota1, float novaNota2, float novaNota3);
 
+exercicio4-lista-media
 void removerUltimo(Lista *l);
 
 int buscarAlunoPorRM(Lista l, int rm);
@@ -50,6 +51,14 @@ void removerUltimo(Lista *l) {
         printf("Último aluno removido com sucesso.\n");
     } else {
         printf("Lista vazia, nada para remover.\n");
+
+// ---------- Funções de Arquivo ----------
+void salvarAlunos() {
+    FILE *f = fopen(ARQUIVO, "w");
+    if (!f) {
+        printf("Erro ao salvar alunos.\n");
+        return;
+main
     }
 }
 
@@ -60,6 +69,7 @@ int buscarAlunoPorRM(Lista l, int rm) {
     return -1;
 }
 
+exercicio4-lista-media
 float calcularMedia(Lista l) {
     float soma = 0;
     for (int i = 0; i < l.tamanho; i++) {
@@ -67,6 +77,11 @@ float calcularMedia(Lista l) {
     }
     return (l.tamanho > 0) ? soma / l.tamanho : 0;
 }
+
+void carregarAlunos() {
+    FILE *f = fopen(ARQUIVO, "r");
+    if (!f) return;
+main
 
 void listarAlunos(Lista l) {
     if (l.tamanho == 0) {
@@ -97,6 +112,8 @@ void inserirAluno(Lista *l) {
         printf("Aluno com RM %d já existe.\n", novo.rm);
         return;
     }
+  
+  exercicio4-lista-media
     printf("Digite o nome do aluno: ");
     fgets(novo.nome, MAX_NOME, stdin);
     size_t len = strlen(novo.nome);
@@ -113,6 +130,14 @@ void inserirAluno(Lista *l) {
     l->dados[l->tamanho] = novo;
     l->tamanho++;
     printf("Aluno inserido com sucesso.\n");
+
+    strcpy(lista.alunos[lista.tamanho].nome, nome);
+    lista.alunos[lista.tamanho].rm = rm;
+    lista.alunos[lista.tamanho].nota = nota;
+    lista.tamanho++;
+    salvarAlunos();
+    printf("Aluno adicionado com sucesso!\n");
+main
 }
 
 void alterarNotaAluno(Lista *l) {
@@ -206,6 +231,14 @@ int carregarListaArquivo(Lista *l, const char *nomeArquivo) {
     }
     fclose(f);
     return 1;
+}
+
+// ---------- Busca ----------
+int buscarAlunoPorRM(Lista l, int rm) {
+    for (int i = 0; i < l.tamanho; i++) {
+        if (l.alunos[i].rm == rm) return i;
+    }
+    return -1;
 }
 
 #endif

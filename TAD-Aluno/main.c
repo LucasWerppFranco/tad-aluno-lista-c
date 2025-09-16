@@ -4,6 +4,7 @@
 #define ARQUIVO "alunos.txt"
 
 int main() {
+exercicio4-lista-media
     Lista lista;
     if (carregarListaArquivo(&lista, ARQUIVO)) {
         printf("Dados carregados de %s.\n", ARQUIVO);
@@ -12,6 +13,8 @@ int main() {
         lista.tamanho = 0;
     }
 
+    carregarAlunos(); 
+main
     int opcao;
 
     do {
@@ -26,6 +29,7 @@ int main() {
         printf("Escolha uma opção: ");
         scanf("%d", &opcao);
 
+exercicio4-lista-media
         switch(opcao) {
             case 1:
                 inserirAluno(&lista);
@@ -69,6 +73,42 @@ int main() {
                 break;
             default:
                 printf("Opção inválida.\n");
+
+        if (opcao == 1) {
+            char nome[50];
+            int rm;
+            float nota;
+            printf("Digite o nome do aluno: ");
+            getchar(); 
+            fgets(nome, sizeof(nome), stdin);
+            nome[strcspn(nome, "\n")] = 0;
+            printf("Digite o RM (6 digitos): ");
+            scanf("%d", &rm);
+            printf("Digite a nota: ");
+            scanf("%f", &nota);
+            adicionarAluno(nome, rm, nota);
+
+        } else if (opcao == 2) {
+            int rm;
+            float novaNota;
+            printf("Digite o RM do aluno: ");
+            scanf("%d", &rm);
+            printf("Digite a nova nota: ");
+            scanf("%f", &novaNota);
+            alterarNotaPorRM(rm, novaNota);
+
+        } else if (opcao == 3) {
+            listarAlunos();
+
+        } else if (opcao == 4) {
+            removerUltimo(&lista);
+
+        } else if (opcao == 0) {
+            printf("Saindo...\n");
+
+        } else {
+            printf("Opcao invalida!\n");
+main
         }
     } while (opcao != 0);
 
