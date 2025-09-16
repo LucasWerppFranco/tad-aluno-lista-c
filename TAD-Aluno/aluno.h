@@ -22,7 +22,7 @@ Lista lista = {.tamanho = 0};
 
 // ---------- Funções de Arquivo ----------
 void salvarAlunos() {
-    FILE f = fopen(ARQUIVO, "w");
+    FILE *f = fopen(ARQUIVO, "w");
     if (!f) {
         printf("Erro ao salvar alunos.\n");
         return;
@@ -36,7 +36,7 @@ void salvarAlunos() {
 }
 
 void carregarAlunos() {
-    FILEf = fopen(ARQUIVO, "r");
+    FILE *f = fopen(ARQUIVO, "r");
     if (!f) return;
 
     while (fscanf(f, "%49[^;];%d;%f\n",
@@ -55,7 +55,7 @@ void adicionarAluno(const char *nome, int rm, float nota) {
         printf("Limite maximo de alunos atingido!\n");
         return;
     }
-strcpy(lista.alunos[lista.tamanho].nome, nome);
+    strcpy(lista.alunos[lista.tamanho].nome, nome);
     lista.alunos[lista.tamanho].rm = rm;
     lista.alunos[lista.tamanho].nota = nota;
     lista.tamanho++;
@@ -102,6 +102,14 @@ void removerUltimo(Lista *l) {
     } else {
         printf("Nao ha alunos para remover.\n");
     }
+}
+
+// ---------- Busca ----------
+int buscarAlunoPorRM(Lista l, int rm) {
+    for (int i = 0; i < l.tamanho; i++) {
+        if (l.alunos[i].rm == rm) return i;
+    }
+    return -1;
 }
 
 #endif
