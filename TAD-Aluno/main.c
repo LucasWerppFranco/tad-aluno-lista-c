@@ -2,7 +2,7 @@
 #include "aluno.h"
 
 int main() {
-    carregarAlunos(); 
+    carregarAlunos(); // Carregar dados existentes
     int opcao;
 
     do {
@@ -10,6 +10,7 @@ int main() {
         printf("1 - Adicionar aluno\n");
         printf("2 - Alterar nota\n");
         printf("3 - Listar alunos\n");
+        printf("4 - Remover ultimo aluno\n");
         printf("0 - Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
@@ -19,9 +20,9 @@ int main() {
             int rm;
             float nota;
             printf("Digite o nome do aluno: ");
-            getchar(); 
+            getchar(); // limpar \n
             fgets(nome, sizeof(nome), stdin);
-            nome[strcspn(nome, "\n")] = 0; 
+            nome[strcspn(nome, "\n")] = 0;
             printf("Digite o RM (6 digitos): ");
             scanf("%d", &rm);
             printf("Digite a nota: ");
@@ -40,6 +41,9 @@ int main() {
         } else if (opcao == 3) {
             listarAlunos();
 
+        } else if (opcao == 4) {
+            removerUltimo(&lista);
+
         } else if (opcao == 0) {
             printf("Saindo...\n");
 
@@ -50,6 +54,4 @@ int main() {
     } while (opcao != 0);
 
     return 0;
-
-
 }
